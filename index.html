@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students</title>
+  </head>
+
+  <body>
+    <section id="student-form">
+      <h2>Add New Student</h2>
+      <form id="studentForm">
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="text" id="phone" placeholder="Phone" required />
+        <input type="text" id="address" placeholder="Address" required />
+
+        <select id="teacherSelect" required>
+          <option value="">Select Teacher</option>
+          <!-- Options will load from API -->
+        </select>
+
+        <select id="courseSelect" required>
+          <option value="">Select Course</option>
+          <!-- Options will load from API -->
+        </select>
+
+        <button type="submit">Add Student</button>
+      </form>
+    </section>
+
+    <hr />
+
+    <h1>All Students</h1>
+    <section id="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search Student by Name..."
+      />
+    </section>
+
+    <table border="1" id="studentsTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>PhoneNumber</th>
+          <th>Address</th>
+          <th>Instructor</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+
+    <section id="change">
+      <a href="index.html" class="btn">Student</a>
+      <a href="Teacher/teacher.html" class="btn">Teacher</a>
+      <a href="Course/course.html" class="btn">Course</a>
+      <a href="Department/department.html" class="btn">Department</a>
+      <a href="/User/user.html" class="btn">Users</a>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
