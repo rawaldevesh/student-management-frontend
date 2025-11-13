@@ -7,7 +7,32 @@
   </head>
 
   <body>
+    <section id="course-form">
+      <h2>Add New Student</h2>
+      <form id="courseForm">
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="tect" id="duration" placeholder="Duration" required />
+
+        <select id="teacherSelect" required>
+          <option value="">Select Teacher</option>
+          <!-- Options will load from API -->
+        </select>
+
+        <select id="departmentSelect" required>
+          <option value="">Select Department</option>
+          <!-- Options will load from API -->
+        </select>
+
+        <button type="submit">Add Course</button>
+      </form>
+    </section>
+
+    <hr />
+
     <h1>All Course</h1>
+    <section id="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 Search Course..." />
+    </section>
 
     <table border="1" id="CourseTable">
       <thead>
@@ -24,7 +49,7 @@
     </table>
 
     <section id="change">
-      <a href="../index.html" class="btn">Student</a>
+      <a href="../Student/index.html" class="btn">Student</a>
       <a href="../Teacher/teacher.html" class="btn">Teacher</a>
       <a href="course.html" class="btn">Course</a>
       <a href="../Department/department.html" class="btn">Department</a>

@@ -1,8 +1,9 @@
-const baseURL = "http://localhost:9999/api"; 
+const baseURL = "http://localhost:9999/api";
 const tableBody = document.querySelector("#studentsTable tbody");
 const studentForm = document.querySelector("#studentForm");
 const teacherSelect = document.querySelector("#teacherSelect");
 const courseSelect = document.querySelector("#courseSelect");
+const searchInput = document.querySelector("#searchInput");
 
 // student table display
 async function loadStudents() {
@@ -11,7 +12,7 @@ async function loadStudents() {
     const students = response.data;
     tableBody.innerHTML = "";
 
-    students.forEach(student => {
+    students.forEach((student) => {
       const row = `
         <tr>
           <td>${student.id}</td>
@@ -28,7 +29,6 @@ async function loadStudents() {
         </tr>`;
       tableBody.insertAdjacentHTML("beforeend", row);
     });
-
   } catch (error) {
     console.error("Error fetching students:", error);
     tableBody.innerHTML = `
@@ -42,14 +42,14 @@ async function loadDropdowns() {
     const teachers = await axios.get(`${baseURL}/teachers`);
     const courses = await axios.get(`${baseURL}/courses`);
 
-    teachers.data.forEach(t => {
+    teachers.data.forEach((t) => {
       const option = document.createElement("option");
       option.value = t.id;
       option.textContent = t.name;
       teacherSelect.appendChild(option);
     });
 
-    courses.data.forEach(c => {
+    courses.data.forEach((c) => {
       const option = document.createElement("option");
       option.value = c.id;
       option.textContent = c.courseName;
@@ -60,7 +60,7 @@ async function loadDropdowns() {
   }
 }
 
-// Add Stdent 
+// Add Stdent
 studentForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -70,7 +70,7 @@ studentForm.addEventListener("submit", async (e) => {
     phone: document.getElementById("phone").value,
     address: document.getElementById("address").value,
     teacher: { id: parseInt(document.getElementById("teacherSelect").value) },
-    course: { id: parseInt(document.getElementById("courseSelect").value) }
+    course: { id: parseInt(document.getElementById("courseSelect").value) },
   };
 
   try {
@@ -89,13 +89,11 @@ studentForm.addEventListener("submit", async (e) => {
 
     studentForm.reset();
     loadStudents();
-
   } catch (err) {
     console.error("Error submitting student:", err);
     alert("Failed to submit student");
   }
 });
-
 
 //serch
 searchInput.addEventListener("keyup", function () {
@@ -108,10 +106,8 @@ searchInput.addEventListener("keyup", function () {
   });
 });
 
-
 let editMode = false;
 let editingId = null;
-
 
 //update or edit student
 async function editStudent(id) {
@@ -126,10 +122,14 @@ async function editStudent(id) {
     document.getElementById("address").value = s.address;
 
     // you can’t select by name, so match teacher/course by name if available
-    const teacherOption = [...teacherSelect.options].find(opt => opt.text === s.teacherName);
+    const teacherOption = [...teacherSelect.options].find(
+      (opt) => opt.text === s.teacherName
+    );
     if (teacherOption) teacherSelect.value = teacherOption.value;
 
-    const courseOption = [...courseSelect.options].find(opt => opt.text === s.coursesName);
+    const courseOption = [...courseSelect.options].find(
+      (opt) => opt.text === s.coursesName
+    );
     if (courseOption) courseSelect.value = courseOption.value;
 
     // switch mode
@@ -137,7 +137,8 @@ async function editStudent(id) {
     editingId = id;
 
     // change button text
-    document.querySelector("#studentForm button").textContent = "Update Student";
+    document.querySelector("#studentForm button").textContent =
+      "Update Student";
   } catch (err) {
     console.error("Error fetching student for edit:", err);
   }

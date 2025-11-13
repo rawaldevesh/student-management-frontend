@@ -6,12 +6,12 @@ const departmentForm = document.querySelector("#departmentForm");
 async function loadDepartment() {
   try {
     const response = await axios.get(`${baseURL}/departments`);
-    const students = response.data;
+    const departments = response.data;
 
     tableBody.innerHTML = "";
 
     // Loop through each student and create a table row
-    students.forEach((department) => {
+    departments.forEach((department) => {
       const row = `
         <tr>
           <td>${department.id}</td>

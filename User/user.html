@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teacher</title>
+    <title>User</title>
   </head>
 
   <body>
-    <section id="student-form">
+    <section id="user-form">
       <h2>Add New User</h2>
       <form id="userForm">
         <input type="text" id="username" placeholder="User Name" required />
@@ -19,7 +19,14 @@
 
     <hr />
 
-    <h1>All Teacher</h1>
+    <h1>All User</h1>
+    <section id="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search Student by Name..."
+      />
+    </section>
 
     <table border="1" id="UserTable">
       <thead>
@@ -27,6 +34,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Password</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody></tbody>
