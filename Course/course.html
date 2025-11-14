@@ -3,58 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Course</title>
   </head>
 
   <body>
-    <section id="course-form">
-      <h2>Add New Student</h2>
-      <form id="courseForm">
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="tect" id="duration" placeholder="Duration" required />
+    <div id="header">
+      <a id="link" href="../Student/index.html" class="btn">Student</a>
+      <a id="link" href="../Teacher/teacher.html" class="btn">Teacher</a>
+      <a id="link" href="course.html" class="btn">Course</a>
+      <a id="link" href="../Department/department.html" class="btn"
+        >Department</a
+      >
+      <a id="link" href="../User/user.html" class="btn">Users</a>
+      <div id="logout">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
 
-        <select id="teacherSelect" required>
-          <option value="">Select Teacher</option>
-          <!-- Options will load from API -->
-        </select>
+    <div id="body">
+      <div id="courseform">
+        <h2>Course Form</h2>
+        <form id="courseForm">
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="tect" id="duration" placeholder="Duration" required />
 
-        <select id="departmentSelect" required>
-          <option value="">Select Department</option>
-          <!-- Options will load from API -->
-        </select>
+          <select id="teacherSelect" required>
+            <option value="">Select Teacher</option>
+            <!-- Options will load from API -->
+          </select>
 
-        <button type="submit">Add Course</button>
-      </form>
-    </section>
+          <select id="departmentSelect" required>
+            <option value="">Select Department</option>
+            <!-- Options will load from API -->
+          </select>
 
-    <hr />
+          <button type="submit">Add Course</button>
+        </form>
+      </div>
 
-    <h1>All Course</h1>
-    <section id="search-bar">
-      <input type="text" id="searchInput" placeholder="🔍 Search Course..." />
-    </section>
+      <div id="courselist">
+        <h1>Course List</h1>
+        <section id="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search Course..."
+          />
+        </section>
 
-    <table border="1" id="CourseTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Duration</th>
-          <th>Teacher</th>
-          <th>Department</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <section id="change">
-      <a href="../Student/index.html" class="btn">Student</a>
-      <a href="../Teacher/teacher.html" class="btn">Teacher</a>
-      <a href="course.html" class="btn">Course</a>
-      <a href="../Department/department.html" class="btn">Department</a>
-      <a href="../User/user.html" class="btn">Users</a>
-    </section>
+        <table id="CourseTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Duration</th>
+              <th>Teacher</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="course.js"></script>

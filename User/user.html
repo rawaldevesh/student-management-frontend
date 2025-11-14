@@ -3,50 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="user.css" />
     <title>User</title>
   </head>
 
   <body>
-    <section id="user-form">
-      <h2>Add New User</h2>
-      <form id="userForm">
-        <input type="text" id="username" placeholder="User Name" required />
-        <input type="password" id="password" placeholder="Password" required />
+    <div id="header">
+      <a id="link" href="../Student/index.html" class="btn">Student</a>
+      <a id="link" href="../Teacher/teacher.html" class="btn">Teacher</a>
+      <a id="link" href="../Course/course.html" class="btn">Course</a>
+      <a id="link" href="../Department/department.html" class="btn"
+        >Department</a
+      >
+      <a id="link" href="user.html" class="btn">Users</a>
+      <div id="logout">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
 
-        <button type="submit">Add User</button>
-      </form>
-    </section>
+    <div id="body">
+      <div id="userform">
+        <h2>Add New User</h2>
 
-    <hr />
+        <form id="userForm">
+          <input type="text" id="username" placeholder="User Name" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
 
-    <h1>All User</h1>
-    <section id="search-bar">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search Student by Name..."
-      />
-    </section>
+          <button type="submit">Add User</button>
+        </form>
+      </div>
 
-    <table border="1" id="UserTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Password</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+      <div id="userlist">
+        <h2>All User</h2>
+        <section id="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search Student by Name..."
+          />
+        </section>
 
-    <section id="change">
-      <a href="../index.html" class="btn">Student</a>
-      <a href="../Teacher/teacher.html" class="btn">Teacher</a>
-      <a href="../Course/course.html" class="btn">Course</a>
-      <a href="../Department/department.html" class="btn">Department</a>
-      <a href="user.html" class="btn">Users</a>
-    </section>
+        <table id="UserTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Password</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="user.js"></script>

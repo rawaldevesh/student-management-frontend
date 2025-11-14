@@ -19,7 +19,7 @@ form.addEventListener("submit", async (e) => {
     localStorage.setItem("user", JSON.stringify(res.data));
 
     // redirect to student index page
-    window.location.href = "student/index.html";
+    window.location.href = "../User/user.html";
   } catch (err) {
     console.error(err);
     errorMsg.textContent = err.response?.data?.error || "Invalid login!";

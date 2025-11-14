@@ -25,8 +25,12 @@ async function loadCourses() {
           <td>${course.teacherName || "-"}</td>
           <td>${course.departmentName || "-"}</td>
           <td>
-            <button onclick="editCourse(${course.id})">Edit</button>
-            <button onclick="deleteCourse(${course.id})">Delete</button>
+            <button id ="action" onclick="editCourse(${
+              course.id
+            })">Edit</button>
+            <button class = "delete" onclick="deleteCourse(${
+              course.id
+            })">Delete</button>
           </td>
         </tr>`;
       tableBody.insertAdjacentHTML("beforeend", row);

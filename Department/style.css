@@ -60,7 +60,7 @@ body {
   background: #c0392b;
 }
 
-#studentform {
+#departmentform {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
@@ -70,7 +70,7 @@ body {
   padding: 10px;
 }
 
-#studentslist {
+#departmentlist {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
@@ -84,7 +84,7 @@ h2 {
   margin-bottom: 10px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-#studentform input {
+#departmentform input {
   margin-top: 5px;
   display: flex;
   padding: 8px;
@@ -92,16 +92,8 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-#courseSelect {
-  margin-top: 5px;
-  display: flex;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
-}
-#studentform button {
+
+#departmentform button {
   margin-top: 10px;
   display: flex;
   padding: 8px;

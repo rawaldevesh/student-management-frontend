@@ -1,7 +1,6 @@
 const baseURL = "http://localhost:9999/api";
 const tableBody = document.querySelector("#studentsTable tbody");
 const studentForm = document.querySelector("#studentForm");
-const teacherSelect = document.querySelector("#teacherSelect");
 const courseSelect = document.querySelector("#courseSelect");
 const searchInput = document.querySelector("#searchInput");
 
@@ -20,11 +19,14 @@ async function loadStudents() {
           <td>${student.email}</td>
           <td>${student.phone}</td>
           <td>${student.address}</td>
-          <td>${student.teacherName || "-"}</td>
-          <td>${student.coursesName || "-"}</td>
+          <td>${student.courseName || "-"}</td>
           <td>
-            <button onclick="editStudent(${student.id})">Edit</button>
-            <button onclick="deleteStudent(${student.id})">Delete</button>
+            <button id ="action" onclick="editStudent(${
+              student.id
+            })">Edit</button>
+            <button  class = "delete" onclick="deleteStudent(${
+              student.id
+            })">Delete</button>
           </td>
         </tr>`;
       tableBody.insertAdjacentHTML("beforeend", row);
@@ -36,18 +38,10 @@ async function loadStudents() {
     `;
   }
 }
-// list of teacher and course
+// list and course
 async function loadDropdowns() {
   try {
-    const teachers = await axios.get(`${baseURL}/teachers`);
     const courses = await axios.get(`${baseURL}/courses`);
-
-    teachers.data.forEach((t) => {
-      const option = document.createElement("option");
-      option.value = t.id;
-      option.textContent = t.name;
-      teacherSelect.appendChild(option);
-    });
 
     courses.data.forEach((c) => {
       const option = document.createElement("option");
@@ -69,7 +63,7 @@ studentForm.addEventListener("submit", async (e) => {
     email: document.getElementById("email").value,
     phone: document.getElementById("phone").value,
     address: document.getElementById("address").value,
-    teacher: { id: parseInt(document.getElementById("teacherSelect").value) },
+
     course: { id: parseInt(document.getElementById("courseSelect").value) },
   };
 
@@ -82,7 +76,7 @@ studentForm.addEventListener("submit", async (e) => {
       editingId = null;
       document.querySelector("#studentForm button").textContent = "Add Student";
     } else {
-      // ➕ ADD NEW STUDENT
+      //ADD NEW STUDENT
       await axios.post(`${baseURL}/students`, studentData);
       alert("Student added successfully!");
     }
@@ -121,14 +115,8 @@ async function editStudent(id) {
     document.getElementById("phone").value = s.phone;
     document.getElementById("address").value = s.address;
 
-    // you can’t select by name, so match teacher/course by name if available
-    const teacherOption = [...teacherSelect.options].find(
-      (opt) => opt.text === s.teacherName
-    );
-    if (teacherOption) teacherSelect.value = teacherOption.value;
-
     const courseOption = [...courseSelect.options].find(
-      (opt) => opt.text === s.coursesName
+      (opt) => opt.text === s.courseName
     );
     if (courseOption) courseSelect.value = courseOption.value;
 
@@ -156,6 +144,17 @@ async function deleteStudent(id) {
     alert("Failed to delete student");
   }
 }
+
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  window.location.href = "../Home/login.html";
+}
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  alert("You have been logged out.");
+  window.location.href = "../Home/login.html";
+});
 
 loadDropdowns();
 loadStudents();

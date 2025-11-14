@@ -19,8 +19,8 @@ async function loadDepartment() {
           <td>${department.code}</td>
           <td>${department.hodName}</td>
           <td>
-            <button onclick="editDepartment(${department.id})">Edit</button>
-            <button onclick="deleteDepartment(${department.id})">Delete</button>
+            <button id ="action" onclick="editDepartment(${department.id})">Edit</button>
+            <button class = "delete" onclick="deleteDepartment(${department.id})">Delete</button>
           </td>
         </tr>`;
       tableBody.insertAdjacentHTML("beforeend", row);
@@ -115,6 +115,12 @@ async function deleteDepartment(id) {
     console.error("Error deleting departments:", err);
     alert("Failed to delete departments");
   }
+}
+
+//login check
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  window.location.href = "../Home/login.html";
 }
 
 // Run when page loads

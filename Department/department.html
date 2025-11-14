@@ -4,50 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Department</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <section id="department-form">
-      <h2>Add New Department</h2>
-      <form id="departmentForm">
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="text" id="Code" placeholder="Code" required />
-        <input type="text" id="Hod" placeholder="HOD Name" required />
+    <div id="header">
+      <a id="link" href="../Student/index.html" class="btn">Student</a>
+      <a id="link" href="../Teacher/teacher.html" class="btn">Teacher</a>
+      <a id="link" href="../Course/course.html" class="btn">Course</a>
+      <a id="link" href="department.html" class="btn">Department</a>
+      <a id="link" href="../User/user.html" class="btn">Users</a>
+      <div id="logout">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
 
-        <button type="submit">Add Department</button>
-      </form>
-    </section>
-    <hr />
+    <div id="body">
+      <div id="departmentform">
+        <h2>Add New Department</h2>
+        <form id="departmentForm">
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="text" id="Code" placeholder="Code" required />
+          <input type="text" id="Hod" placeholder="HOD Name" required />
 
-    <h1>All Department</h1>
+          <button type="submit">Add Department</button>
+        </form>
+      </div>
 
-    <section id="search-bar">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search Student by Name..."
-      />
-    </section>
-    <table border="1" id="DepartmentTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Code</th>
-          <th>HOD</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <section id="change">
-      <a href="../Student/index.html" class="btn">Student</a>
-      <a href="../Teacher/teacher.html" class="btn">Teacher</a>
-      <a href="../Course/course.html" class="btn">Course</a>
-      <a href="department.html" class="btn">Department</a>
-      <a href="../User/user.html" class="btn">Users</a>
-    </section>
+      <div id="departmentlist">
+        <h2>Department</h2>
 
+        <section id="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search Student by Name..."
+          />
+        </section>
+        <table id="DepartmentTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>HOD</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="department.js"></script>
   </body>

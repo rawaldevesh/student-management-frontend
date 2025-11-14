@@ -18,8 +18,8 @@ async function loadUsers() {
           <td>${user.userName}</td>
           <td>${user.password}</td>
           <td>
-            <button onclick="editUser(${user.id})">Edit</button>
-            <button onclick="deleteUsers(${user.id})">Delete</button>
+            <button id ="action" onclick="editUser(${user.id})">Edit</button>
+            <button class = "delete" onclick="deleteUsers(${user.id})">Delete</button>
           </td>
         </tr>`;
       tableBody.insertAdjacentHTML("beforeend", row);
@@ -110,5 +110,22 @@ async function deleteUsers(id) {
     alert("Failed to delete Users");
   }
 }
+
+// check login status
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  // if not logged in, redirect to login
+  window.location.href = "../Home/login.html";
+} else {
+  document.getElementById("username").textContent = user.userName;
+}
+
+// handle logout
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  alert("You have been logged out.");
+  window.location.href = "../Home/login.html";
+});
+
 // Run when page loads
 loadUsers();

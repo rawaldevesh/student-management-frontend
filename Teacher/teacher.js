@@ -24,8 +24,8 @@ async function loadTeacher() {
           <td>${teacher.courses}</td>
           <td>${teacher.departmentName}</td>
           <td>
-            <button onclick="editTeacher(${teacher.id})">Edit</button>
-            <button onclick="deleteTeacher(${teacher.id})">Delete</button>
+            <button id ="action" onclick="editTeacher(${teacher.id})">Edit</button>
+            <button class = "delete" onclick="deleteTeacher(${teacher.id})">Delete</button>
           </td>
 
         </tr>`;
@@ -54,7 +54,6 @@ async function loadDropdowns() {
   }
 }
 
-//serch
 //serch
 searchInput.addEventListener("keyup", function () {
   const searchValue = this.value.toLowerCase();
@@ -102,19 +101,6 @@ teacherForm.addEventListener("submit", async function (e) {
   }
 });
 
-//delete teacher
-async function deleteTeacher(id) {
-  if (!confirm("Are you sure you want to delete this teacher?")) return;
-  try {
-    await axios.delete(`${baseURL}/teachers/${id}`);
-    alert("Teacher deleted successfully!");
-    loadTeacher();
-  } catch (error) {
-    console.error("Error deleting teacher:", error);
-    alert("Failed to delete teacher.");
-  }
-}
-
 //update or edit teacher
 async function editTeacher(id) {
   try {
@@ -130,11 +116,29 @@ async function editTeacher(id) {
     if (departmentOption) departmentSelect.value = departmentOption.value;
     editMode = true;
     editingId = id;
+
     document.querySelector("#teacherForm button").textContent =
       "Update Teacher";
   } catch (error) {
     console.error("Error fetching teacher:", error);
   }
+}
+//delete teacher
+async function deleteTeacher(id) {
+  if (!confirm("Are you sure you want to delete this teacher?")) return;
+  try {
+    await axios.delete(`${baseURL}/teachers/${id}`);
+    alert("Teacher deleted successfully!");
+    loadTeacher();
+  } catch (error) {
+    console.error("Error deleting teacher:", error);
+    alert("Failed to delete teacher.");
+  }
+}
+
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  window.location.href = "../Home/login.html";
 }
 
 // Run when page loads
