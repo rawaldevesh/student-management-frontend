@@ -112,6 +112,7 @@ async function deleteDepartment(id) {
     alert("Department deleted successfully!");
     loadDepartment();
   } catch (err) {
+    alert(err.response.data.error);
     console.error("Error deleting departments:", err);
     alert("Failed to delete departments");
   }

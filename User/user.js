@@ -116,9 +116,10 @@ const user = JSON.parse(localStorage.getItem("user"));
 if (!user) {
   // if not logged in, redirect to login
   window.location.href = "../Home/login.html";
-} else {
-  document.getElementById("username").textContent = user.userName;
 }
+// } else {
+//   document.getElementById("username").textContent = user.userName;
+// }
 
 // handle logout
 document.getElementById("logoutBtn").addEventListener("click", () => {

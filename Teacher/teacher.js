@@ -131,6 +131,7 @@ async function deleteTeacher(id) {
     alert("Teacher deleted successfully!");
     loadTeacher();
   } catch (error) {
+    alert(error.response.data.error);
     console.error("Error deleting teacher:", error);
     alert("Failed to delete teacher.");
   }

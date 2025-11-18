@@ -10,8 +10,8 @@
   <body>
     <div id="header">
       <a id="link" href="../Student/index.html" class="btn">Student</a>
-      <a id="link" href="../Teacher/teacher.html" class="btn">Teacher</a>
       <a id="link" href="course.html" class="btn">Course</a>
+      <a id="link" href="../Teacher/teacher.html" class="btn">Teacher</a>
       <a id="link" href="../Department/department.html" class="btn"
         >Department</a
       >
@@ -33,17 +33,12 @@
             <!-- Options will load from API -->
           </select>
 
-          <select id="departmentSelect" required>
-            <option value="">Select Department</option>
-            <!-- Options will load from API -->
-          </select>
-
           <button type="submit">Add Course</button>
         </form>
       </div>
 
       <div id="courselist">
-        <h1>Course List</h1>
+        <h2>Course List</h2>
         <section id="search-bar">
           <input
             type="text"
@@ -59,7 +54,7 @@
               <th>Name</th>
               <th>Duration</th>
               <th>Teacher</th>
-              <th>Department</th>
+              <!-- <th>Department</th> -->
               <th>Action</th>
             </tr>
           </thead>

@@ -2,7 +2,7 @@ const baseURL = "http://localhost:9999/api"; // your backend endpoint
 const tableBody = document.querySelector("#CourseTable tbody");
 const courseForm = document.querySelector("#courseForm");
 const teacherSelect = document.querySelector("#teacherSelect");
-const departmentSelect = document.querySelector("#departmentSelect");
+// const departmentSelect = document.querySelector("#departmentSelect");
 const searchInput = document.querySelector("#searchInput");
 
 // Function to fetch and display all students
@@ -23,7 +23,7 @@ async function loadCourses() {
           <td>${course.duration}</td>
      
           <td>${course.teacherName || "-"}</td>
-          <td>${course.departmentName || "-"}</td>
+         
           <td>
             <button id ="action" onclick="editCourse(${
               course.id
@@ -47,7 +47,7 @@ async function loadCourses() {
 async function loadDropdowns() {
   try {
     const teachers = await axios.get(`${baseURL}/teachers`);
-    const departments = await axios.get(`${baseURL}/departments`);
+    // const departments = await axios.get(`${baseURL}/departments`);
 
     teachers.data.forEach((t) => {
       const option = document.createElement("option");
@@ -56,12 +56,12 @@ async function loadDropdowns() {
       teacherSelect.appendChild(option);
     });
 
-    departments.data.forEach((d) => {
-      const option = document.createElement("option");
-      option.value = d.id;
-      option.textContent = d.name;
-      departmentSelect.appendChild(option);
-    });
+    // departments.data.forEach((d) => {
+    //   const option = document.createElement("option");
+    //   option.value = d.id;
+    //   option.textContent = d.name;
+    //   departmentSelect.appendChild(option);
+    // });
   } catch (err) {
     console.error("Error loading dropdowns:", err);
   }
@@ -95,10 +95,10 @@ async function editCourse(id) {
     );
     if (teacherOption) teacherSelect.value = teacherOption.value;
 
-    const departmentOption = [...departmentSelect.options].find(
-      (opt) => opt.text === course.departmentName
-    );
-    if (departmentOption) departmentSelect.value = departmentOption.value;
+    // const departmentOption = [...departmentSelect.options].find(
+    //   (opt) => opt.text === course.departmentName
+    // );
+    // if (departmentOption) departmentSelect.value = departmentOption.value;
 
     editMode = true;
     editingId = id;
@@ -118,9 +118,9 @@ courseForm.addEventListener("submit", async function (e) {
     courseName: document.getElementById("name").value,
     duration: document.getElementById("duration").value,
     teacher: { id: parseInt(document.getElementById("teacherSelect").value) },
-    department: {
-      id: parseInt(document.getElementById("departmentSelect").value),
-    },
+    // department: {
+    //   id: parseInt(document.getElementById("departmentSelect").value),
+    // },
   };
 
   try {
@@ -152,10 +152,22 @@ async function deleteCourse(id) {
     alert("Course deleted successfully!");
     loadCourses();
   } catch (error) {
+    alert(error.response.data.error);
     console.error("Error deleting course:", error);
     alert("Failed to delete course.");
   }
 }
+
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  window.location.href = "../Home/login.html";
+}
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  alert("You have been logged out.");
+  window.location.href = "../Home/login.html";
+});
 
 loadDropdowns();
 // Run when page loads
