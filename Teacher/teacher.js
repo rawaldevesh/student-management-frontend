@@ -137,10 +137,17 @@ async function deleteTeacher(id) {
   }
 }
 
-const user = JSON.parse(localStorage.getItem("user"));
-if (!user) {
-  window.location.href = "../Home/login.html";
-}
+// sessin logout
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    await axios.post(`${baseURL}/users/logout`, {}, { withCredentials: true });
+    alert("You have been logged out.");
+    window.location.href = "../Home/login.html";
+  } catch (err) {
+    console.error(err);
+    alert("Logout failed.");
+  }
+});
 
 // Run when page loads
 loadDropdowns();

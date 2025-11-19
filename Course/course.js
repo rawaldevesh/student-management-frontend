@@ -158,15 +158,31 @@ async function deleteCourse(id) {
   }
 }
 
-const user = JSON.parse(localStorage.getItem("user"));
-if (!user) {
-  window.location.href = "../Home/login.html";
+async function checkLogin() {
+  try {
+    const res = await axios.get(`${baseURL}/users/check-login`, {
+      withCredentials: true,
+    });
+    // if (res.status !== 200) throw new Error("Not logged in");
+    // console.log("User is logged in:", res.data);
+    // user is logged in, optionally store data in JS\
+    return res.data;
+  } catch (err) {
+    window.location.href = "../Home/login.html";
+    return null;
+  }
 }
+checkLogin();
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("user");
-  alert("You have been logged out.");
-  window.location.href = "../Home/login.html";
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    await axios.post(`${baseURL}/users/logout`, {}, { withCredentials: true });
+    alert("You have been logged out.");
+    window.location.href = "../Home/login.html";
+  } catch (err) {
+    console.error(err);
+    alert("Logout failed.");
+  }
 });
 
 loadDropdowns();

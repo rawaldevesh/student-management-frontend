@@ -10,18 +10,22 @@ form.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value.trim();
 
   try {
-    const res = await axios.post(`${baseURL}/login`, {
-      userName: username,
-      password: password,
-    });
+    const res = await axios.post(
+      `${baseURL}/login`,
+      {
+        userName: username,
+        password: password,
+      },
 
-    // save user data
-    localStorage.setItem("user", JSON.stringify(res.data));
+      {
+        withCredentials: true,
+      }
+    );
 
-    // redirect to student index page
-    window.location.href = "../User/user.html";
+    // console.log("Login successful");
+    window.location.href = "../Student/index.html";
   } catch (err) {
     console.error(err);
-    errorMsg.textContent = err.response?.data?.error || "Invalid login!";
+    errorMsg.textContent = err.res?.data?.error || "Invalid login!";
   }
 });
