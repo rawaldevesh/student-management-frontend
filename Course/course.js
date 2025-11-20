@@ -160,16 +160,13 @@ async function deleteCourse(id) {
 
 async function checkLogin() {
   try {
-    const res = await axios.get(`${baseURL}/users/check-login`, {
-      withCredentials: true,
+    const resp = await axios.get("http://localhost:9999/api/users/check-login", {
+      withCredentials: true
     });
-    // if (res.status !== 200) throw new Error("Not logged in");
-    // console.log("User is logged in:", res.data);
-    // user is logged in, optionally store data in JS\
-    return res.data;
+
+    console.log("Cookie check:", resp.data);
   } catch (err) {
-    window.location.href = "../Home/login.html";
-    return null;
+    console.error("FAILED:", err.response?.status);
   }
 }
 checkLogin();

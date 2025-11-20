@@ -19,11 +19,12 @@ form.addEventListener("submit", async (e) => {
 
       {
         withCredentials: true,
+        //to send cookie from backend to frontend
       }
     );
 
-    // console.log("Login successful");
-    window.location.href = "../Student/index.html";
+    console.log(res.data);
+    window.location.href = "../User/user.html";
   } catch (err) {
     console.error(err);
     errorMsg.textContent = err.res?.data?.error || "Invalid login!";

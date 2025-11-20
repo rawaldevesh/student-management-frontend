@@ -145,6 +145,21 @@ async function deleteStudent(id) {
   }
 }
 
+
+
+async function checkLogin() {
+  try {
+    const resp = await axios.get("http://localhost:9999/api/users/check-login", {
+      withCredentials: true
+    });
+
+    console.log("Cookie check:", resp.data);
+  } catch (err) {
+    console.error("FAILED:", err.response?.status);
+  }
+}
+checkLogin();
+
 document.getElementById("logoutBtn").addEventListener("click", async () => {
   try {
     await axios.post(`${baseURL}/users/logout`, {}, { withCredentials: true });

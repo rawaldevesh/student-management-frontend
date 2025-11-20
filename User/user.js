@@ -1,6 +1,8 @@
-const baseURL = "http://localhost:9999/api"; // your backend endpoint
+const baseURL = "http://localhost:9999/api";
 const tableBody = document.querySelector("#UserTable tbody");
 const userForm = document.querySelector("#userForm");
+const searchInput = document.getElementById("searchInput");
+
 // Function to fetch and display all students
 async function loadUsers() {
   try {
@@ -111,25 +113,19 @@ async function deleteUsers(id) {
   }
 }
 
-// // check login status
-// const user = JSON.parse(localStorage.getItem("user"));
-// if (!user) {
-//   // if not logged in, redirect to login
-//   window.location.href = "../Home/login.html";
-// }
-
 async function checkLogin() {
   try {
-    const res = await axios.get(`${baseURL}/users/check-login`, {
-      withCredentials: true,
-    });
-    // if (res.status !== 200) throw new Error("Not logged in");
-    // console.log("User is logged in:", res.data);
-    // user is logged in, optionally store data in JS\
-    return res.data;
+    const resp = await axios.get(
+      "http://localhost:9999/api/users/check-login",
+      {
+        withCredentials: true,
+      }
+    );
+
+    console.log("Cookie check:", resp.data);
   } catch (err) {
+    console.error("FAILED:", err.response?.status);
     window.location.href = "../Home/login.html";
-    return null;
   }
 }
 checkLogin();
